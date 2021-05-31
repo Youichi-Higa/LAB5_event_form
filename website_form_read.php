@@ -33,11 +33,11 @@ fclose($file);
 <body style="background-color: #ffebcd;">
 
   <div class="container">
-    <h3 class="py-3" style="color:#24A6E9;">LAB5の最近の出来事（一覧画面）</h3>
+    <h3 class="py-3 text-nowrap" style="color:#24A6E9;">LAB5の最近の出来事（一覧画面）</h3>
 
     <div class="row" id="output">
     </div>
-    <a href="website_form_input.php" class="btn btn-secondary mb-3" role="button">入力画面</a>
+    <a href="website_form_input.php" class="btn btn-secondary mb-3" role="button">登録画面</a>
   </div>
 
   <!-- jpuery読み込み -->
@@ -54,14 +54,68 @@ fclose($file);
         email: x.split(',')[3].split('\n').join(""),
       }
     })
+
+    img_obj = {
+      abe: "img/01_abe.png",
+      kamizono: "img/02_kamizono.jpeg",
+      tagishi: "img/04_tagishi.jpeg",
+      tsumagari: "img/05_tsumagari.jpeg",
+      hashiguchi: "img/06_hashiguchi.png",
+      higa: "img/07_higa.jpeg",
+      fujikawa: "img/08_fujikawa.jpeg",
+      hori: "img/09_hori.png",
+      matsuo: "img/10_matsuo.jpeg",
+      matsunaga: "img/11_matsunaga.jpeg",
+      miyakawa: "img/12_miyakawa.jpeg",
+      wakamatsu: "img/13_wakamatsu.png",
+      morishige: "img/14_morishige.jpeg",
+      ishibashi: "img/15_ishibashi.jpeg",
+      kadota: "img/16_kadota.png"
+    }
+
+    data.forEach(function(x) {
+      if (x.name == "安倍さん") {
+        x.img = (img_obj["abe"])
+      } else if (x.name == "上薗さん") {
+        x.img = (img_obj["kamizono"])
+      } else if (x.name == "田岸さん") {
+        x.img = (img_obj["tagishi"])
+      } else if (x.name == "津曲さん") {
+        x.img = (img_obj["tsumagari"])
+      } else if (x.name == "橋口さん") {
+        x.img = (img_obj["hashiguchi"])
+      } else if (x.name == "比嘉さん") {
+        x.img = (img_obj["higa"])
+      } else if (x.name == "藤川さん") {
+        x.img = (img_obj["fujikawa"])
+      } else if (x.name == "堀さん") {
+        x.img = (img_obj["hori"])
+      } else if (x.name == "松尾さん") {
+        x.img = (img_obj["matsuo"])
+      } else if (x.name == "松永さん") {
+        x.img = (img_obj["matsunaga"])
+      } else if (x.name == "宮川さん") {
+        x.img = (img_obj["miyakawa"])
+      } else if (x.name == "若松さん") {
+        x.img = (img_obj["wakamatsu"])
+      } else if (x.name == "森繁さん") {
+        x.img = (img_obj["morishige"])
+      } else if (x.name == "石橋さん") {
+        x.img = (img_obj["ishibashi"])
+      } else if (x.name == "角田さん") {
+        x.img = (img_obj["kadota"])
+      }
+    });
+
     console.log(data);
+
 
     const output_data = [];
     data.forEach(function(x) {
       output_data.push(`
       <div class="col-sm-3 my-3">
         <div class="card" style="background-color: #24A6E9; color: white;">
-          <img src="img/G's_logo.jpeg" class="card-img-top" alt="...">
+          <img src=${x.img} class="card-img-top" alt="...">
           <div class="card-body border" style="min-height: 180px;">
             <h5 class="card-title" id="name">${x.name}</h5>
             <p class="card-text" id="event">${x.event}</p>
