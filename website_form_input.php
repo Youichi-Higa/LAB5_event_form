@@ -15,9 +15,27 @@
         <form class="col my-3 rounded" action="website_form_create.php" method="POST" style="max-width: 800px; background-color: #24A6E9; color: white;">
             <fieldset>
                 <legend class="container-sm my-3">LAB5の最近の出来事（登録画面）</legend>
+
                 <div class="container-sm mb-3">
                     <label for="exampleFormControlInput1" class="form-label">名前</label>
-                    <input type="text" name="name" placeholder="○○さん" class="form-control" id="exampleFormControlInput1">
+                    <select name="name" class="form-select" aria-label="Default select example">
+                        <option selected></option>
+                        <option value="安倍さん">安倍さん</option>
+                        <option value="上薗さん">上薗さん</option>
+                        <option value="田岸さん">田岸さん</option>
+                        <option value="津曲さん">津曲さん</option>
+                        <option value="橋口さん">橋口さん</option>
+                        <option value="比嘉さん">比嘉さん</option>
+                        <option value="藤川さん">藤川さん</option>
+                        <option value="堀さん">堀さん</option>
+                        <option value="松尾さん">松尾さん</option>
+                        <option value="松永さん">松永さん</option>
+                        <option value="宮川さん">宮川さん</option>
+                        <option value="若松さん">若松さん</option>
+                        <option value="森重さん">森重さん</option>
+                        <option value="石橋さん">石橋さん</option>
+                        <option value="角田さん">角田さん</option>
+                    </select>
                 </div>
                 <div class="container-sm mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">出来事</label>
@@ -36,7 +54,7 @@
                 </div>
             </fieldset>
         </form>
-        <a href="website_form_read.php" class="btn btn-secondary ms-2"  role="button">一覧画面</a>
+        <a href="website_form_read.php" class="btn btn-secondary ms-2" role="button">一覧画面</a>
     </div>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->

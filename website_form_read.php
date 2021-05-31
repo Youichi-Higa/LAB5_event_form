@@ -98,7 +98,7 @@ fclose($file);
         x.img = (img_obj["miyakawa"])
       } else if (x.name == "若松さん") {
         x.img = (img_obj["wakamatsu"])
-      } else if (x.name == "森繁さん") {
+      } else if (x.name == "森重さん") {
         x.img = (img_obj["morishige"])
       } else if (x.name == "石橋さん") {
         x.img = (img_obj["ishibashi"])
