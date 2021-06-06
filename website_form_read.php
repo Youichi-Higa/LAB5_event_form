@@ -1,21 +1,20 @@
 <?php
 
-$data = [];
+include("functions.php");
+$pdo = connect_to_db();
 
-$file = fopen('data/data.csv', "r");
-flock($file, LOCK_EX);
+$sql = 'SELECT * FROM event_table';
 
-if ($file) {
-  while ($line = fgets($file)) {
-    array_push($data, $line);
-  }
-};
+$stmt = $pdo->prepare($sql);
+$status = $stmt->execute();
 
-flock($file, LOCK_UN);
-fclose($file);
-
-// var_dump($data);
-// exit();
+if ($status == false) {
+  $error = $stmt->errorInfo();
+  echo json_encode(["error_msg" => "{$error[2]}"]);
+  exit();
+} else {
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);  // データの出力用変数（初期値は空文字）を設定
+}
 
 ?>
 
@@ -45,15 +44,8 @@ fclose($file);
 
 
   <script>
-    const json_data = <?= json_encode($data) ?>;
-    const data = json_data.map(x => {
-      return {
-        name: x.split(',')[0],
-        event: x.split(',')[1],
-        writer: x.split(',')[2],
-        email: x.split(',')[3].split('\n').join(""),
-      }
-    })
+    const data = <?= json_encode($result) ?>;
+    console.log(data)
 
     img_obj = {
       abe: "img/01_abe.png",
@@ -107,19 +99,20 @@ fclose($file);
       }
     });
 
-    console.log(data);
-
-
     const output_data = [];
     data.forEach(function(x) {
       output_data.push(`
       <div class="col-sm-3 my-3">
         <div class="card" style="background-color: #24A6E9; color: white;">
           <img src=${x.img} class="card-img-top" alt="...">
-          <div class="card-body border" style="min-height: 180px;">
+          <div class="card-body" style="min-height: 180px;">
             <h5 class="card-title" id="name">${x.name}</h5>
             <p class="card-text" id="event">${x.event}</p>
           </div>
+            <div class="border-bottom p-2 d-grid gap-2 d-md-flex justify-content-sm-end">
+              <button type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">編集</button>
+              <button type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">削除</button>
+            </div>
           <div class="card-body">
             <p class="card-title" id="writer">${x.writer}</p>
             <p class="card-text" id="email">${x.email}</p>
