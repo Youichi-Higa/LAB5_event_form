@@ -3,7 +3,7 @@
 include("functions.php");
 $pdo = connect_to_db();
 
-$sql = 'SELECT * FROM event_table';
+$sql = 'SELECT * FROM event_table WHERE is_deleted=0';
 
 $stmt = $pdo->prepare($sql);
 $status = $stmt->execute();
@@ -111,7 +111,7 @@ if ($status == false) {
           </div>
             <div class="border-bottom p-2 d-grid gap-2 d-md-flex justify-content-sm-end">
               <button onclick="location.href='website_form_edit.php?id=${x.id}'" type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">編集</button>
-              <button type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">削除</button>
+              <button onclick="location.href='website_form_delete.php?id=${x.id}'" type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">削除</button>
             </div>
           <div class="card-body">
             <p class="card-title" id="writer">${x.writer}</p>
