@@ -45,7 +45,7 @@ if ($status == false) {
 
   <script>
     const data = <?= json_encode($result) ?>;
-    console.log(data)
+    console.log(data[0].id)
 
     img_obj = {
       abe: "img/01_abe.png",
@@ -110,7 +110,7 @@ if ($status == false) {
             <p class="card-text" id="event">${x.event}</p>
           </div>
             <div class="border-bottom p-2 d-grid gap-2 d-md-flex justify-content-sm-end">
-              <button type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">編集</button>
+              <button onclick="location.href='website_form_edit.php?id=${x.id}'" type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">編集</button>
               <button type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">削除</button>
             </div>
           <div class="card-body">
