@@ -45,7 +45,7 @@ if ($status == false) {
 
   <script>
     const data = <?= json_encode($result) ?>;
-    console.log(data[0].id)
+    console.log(data);
 
     img_obj = {
       abe: "img/01_abe.png",
@@ -110,8 +110,9 @@ if ($status == false) {
             <p class="card-text" id="event">${x.event}</p>
           </div>
             <div class="border-bottom p-2 d-grid gap-2 d-md-flex justify-content-sm-end">
-              <button onclick="location.href='website_form_edit.php?id=${x.id}'" type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">編集</button>
-              <button onclick="location.href='website_form_delete.php?id=${x.id}'" type="button" class="btn btn-light btn-sm rounded-pill" style="color:#24A6E9; font-weight:bold;">削除</button>
+              <button class="${x.id} btn btn-light btn-sm rounded-pill" onclick="location.href='website_form_edit.php?id=${x.id}'" type="button" style="color:#24A6E9; font-weight:bold;">編集</button>
+              <button class="btn btn-light btn-sm rounded-pill delete" type="button" style="color:#24A6E9; font-weight:bold;">削除</button>
+              <p hidden>${x.id}</p>
             </div>
           <div class="card-body">
             <p class="card-title" id="writer">${x.writer}</p>
@@ -123,6 +124,19 @@ if ($status == false) {
     });
 
     $("#output").html(output_data);
+
+    // 削除クリックしてアラートで確認
+    $(".delete").on("click", function() {
+      let checkDeleteFlg = window.confirm("削除しますか？");
+
+      if (checkDeleteFlg) {
+        const id_num = $(this).next("p").html();
+        location.href = `website_form_delete.php?id=${id_num}`;
+        alert("削除を実行しました。");
+      } else {
+        alert("削除をキャンセルしました。");
+      }
+    });
   </script>
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->
